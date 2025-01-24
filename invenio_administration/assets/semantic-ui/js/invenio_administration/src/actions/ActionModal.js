@@ -11,7 +11,7 @@ import Overridable from "react-overridable";
 
 class ActionModal extends Component {
   render() {
-    const { children, modalOpen, resource } = this.props;
+    const { children, modalOpen, resource, modalProps } = this.props;
 
     return (
       <Overridable
@@ -21,7 +21,7 @@ class ActionModal extends Component {
         children={children}
         resource={resource}
       >
-        <Modal role="dialog" open={modalOpen}>
+        <Modal role="dialog" open={modalOpen} {...modalProps}>
           {children}
         </Modal>
       </Overridable>
@@ -33,11 +33,13 @@ ActionModal.propTypes = {
   children: PropTypes.object,
   modalOpen: PropTypes.bool,
   resource: PropTypes.object.isRequired,
+  modalProps: PropTypes.object,
 };
 
 ActionModal.defaultProps = {
   modalOpen: false,
   children: null,
+  modalProps: {},
 };
 
 export default Overridable.component("InvenioAdministration.ActionModal", ActionModal);
